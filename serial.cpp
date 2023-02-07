@@ -1,12 +1,12 @@
 #include "common.h"
 #include <cmath>
 #include <set>
-#include <map>
+#include <unordered_map>
 #include <iostream>
 
 #define EPS  0.001
 
-static std::map<int, std::set<int>> bins;
+static std::unordered_map<int, std::set<int>> bins;
 static int bin_size = cutoff;
 static int lda = (int) size/bin_size;
 lda += 1;
@@ -75,9 +75,9 @@ void calculate_bin_number(double x, double y, double size, double bin_size, int 
 
 
 void init_simulation(particle_t* parts, int num_parts, double size) {
-    for( int i=0; i< lda*lda;i++){
-        bin[i] = std::set;
-    }
+//    for( int i=0; i< lda*lda;i++){
+//        bin[i] = std::set<int>;
+//    }
     int index;
     for (int i = 0; i < num_parts; ++i){
         index = calculate_bin_number(parts[i].x,parts[i].y, size, bin_size,lda);
