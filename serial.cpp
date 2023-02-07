@@ -108,8 +108,8 @@ void apply_force_bin(int row, int column, int p, particle_t* parts){
 
 void simulate_one_step(particle_t* parts, int num_parts, double size) {
     // Compute Forces
-//    lda = (int) size/bin_size;
-//    lda += 1;
+    lda = (int) size/bin_size;
+    lda += 1;
     for (int i = 0; i < num_parts; ++i) {
         parts[i].ax = parts[i].ay = 0;
         for (int j = 0; j < num_parts; ++j) {
@@ -142,5 +142,12 @@ void simulate_one_step(particle_t* parts, int num_parts, double size) {
         move(parts[i], size);
     }
 
-//
+    for( int i=0; i< lda*lda;i++){
+        bins[i].clear();
+    }
+    int index;
+    for (int i = 0; i < num_parts; ++i){
+        index = calculate_bin_number(parts[i].x,parts[i].y, size, bin_size, lda);
+        bins[index].insert(i);
+    }
 }
