@@ -8,8 +8,7 @@
 
 static std::unordered_map<int, std::set<int>> bins;
 static int bin_size = cutoff;
-static int lda = (int) size/bin_size;
-lda += 1;
+static int lda;
 
 // Apply the force from neighbor to particle
 void apply_force(particle_t& particle, particle_t& neighbor) {
@@ -52,7 +51,7 @@ void move(particle_t& p, double size) {
     }
 }
 
-void calculate_bin_number(double x, double y, double size, double bin_size, int lda){
+int calculate_bin_number(double x, double y, double size, double bin_size, int lda){
 
     int k1=(int)x/bin_size;
     int column_index;
@@ -95,20 +94,22 @@ bool check_boundary(int row , int column){
     if ((column < 0) or (column >=lda)){
         return false;
     }
-    return true
+    return true;
 }
-void apply_force_bin(int row, int column, particle_t* p){
-    if not check_boundary(row, column){
-        return
+void apply_force_bin(int row, int column, int p, particle_t* parts){
+    if (not check_boundary(row, column)){
+        return;
     }
     for (auto it = bins[column+row*lda].begin(); it != bins[column+row*lda].end(); ++it){
-        apply_force(p, it);
+        apply_force(parts[p], parts[it]);
     }
 
 }
 
 void simulate_one_step(particle_t* parts, int num_parts, double size) {
     // Compute Forces
+    lda = (int) size/bin_size;
+    lda += 1;
 //    for (int i = 0; i < num_parts; ++i) {
 //        parts[i].ax = parts[i].ay = 0;
 //        for (int j = 0; j < num_parts; ++j) {
@@ -119,14 +120,14 @@ void simulate_one_step(particle_t* parts, int num_parts, double size) {
     for(int i = 0; i < lda; ++i){
         for (int j = 0; j < lda; ++j){
             for (auto it = bins[i+j*lda].begin(); it != bins[i+j*lda].end(); ++it){
-                apply_force_bin(j-1,i-1, parts[it]);
-                apply_force_bin(j-1,i, parts[it]);
-                apply_force_bin(j-1,i+1, parts[it]);
-                apply_force_bin(j,i-1, parts[it]);
-                apply_force_bin(j,i+1, parts[it]);
-                apply_force_bin(j+1,i-1, parts[it]);
-                apply_force_bin(j+1,i, parts[it]);
-                apply_force_bin(j+1,i+1, parts[it]);
+                apply_force_bin(j-1,i-1, it, parts);
+                apply_force_bin(j-1,i, it, parts);
+                apply_force_bin(j-1,i+1, it, parts);
+                apply_force_bin(j,i-1, it, parts);
+                apply_force_bin(j,i+1, it, parts);
+                apply_force_bin(j+1,i-1, it, parts);
+                apply_force_bin(j+1,i, it, parts);
+                apply_force_bin(j+1,i+1, it, parts);
                 for (auto it2 = bins[i+j*lda].begin(); it2 != bins[i+j*lda].end(); ++it2){
                     if(it2 != it){
                         apply_force(parts[it], parts[it2];
@@ -142,7 +143,7 @@ void simulate_one_step(particle_t* parts, int num_parts, double size) {
     }
 
     for( int i=0; i< lda*lda;i++){
-        bin[i].clear();
+        bins[i].clear();
     }
     int index;
     for (int i = 0; i < num_parts; ++i){
