@@ -130,7 +130,7 @@ void simulate_one_step(particle_t* parts, int num_parts, double size) {
                 apply_force_bin(j+1,i+1, *it, parts);
                 for (auto it2 = bins[i+j*lda].begin(); it2 != bins[i+j*lda].end(); ++it2){
                     if(it2 != it){
-                        apply_force(parts[*it], parts[*it2];
+                        apply_force(parts[*it], parts[*it2]);
                     }
                 }
             }
