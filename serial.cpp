@@ -108,46 +108,39 @@ void apply_force_bin(int row, int column, int p, particle_t* parts){
 
 void simulate_one_step(particle_t* parts, int num_parts, double size) {
     // Compute Forces
-    lda = (int) size/bin_size;
-    lda += 1;
-//    for (int i = 0; i < num_parts; ++i) {
-//        parts[i].ax = parts[i].ay = 0;
-//        for (int j = 0; j < num_parts; ++j) {
-//            apply_force(parts[i], parts[j]);
-//        }
-//    }
-
-    for(int i = 0; i < lda; ++i){
-        for (int j = 0; j < lda; ++j){
-            for (auto it = bins[i+j*lda].begin(); it != bins[i+j*lda].end(); ++it){
-                apply_force_bin(j-1,i-1, *it, parts);
-                apply_force_bin(j-1,i, *it, parts);
-                apply_force_bin(j-1,i+1, *it, parts);
-                apply_force_bin(j,i-1, *it, parts);
-                apply_force_bin(j,i+1, *it, parts);
-                apply_force_bin(j+1,i-1, *it, parts);
-                apply_force_bin(j+1,i, *it, parts);
-                apply_force_bin(j+1,i+1, *it, parts);
-                for (auto it2 = bins[i+j*lda].begin(); it2 != bins[i+j*lda].end(); ++it2){
-                    if(it2 != it){
-                        apply_force(parts[*it], parts[*it2]);
-                    }
-                }
-            }
+//    lda = (int) size/bin_size;
+//    lda += 1;
+    for (int i = 0; i < num_parts; ++i) {
+        parts[i].ax = parts[i].ay = 0;
+        for (int j = 0; j < num_parts; ++j) {
+            apply_force(parts[i], parts[j]);
         }
     }
+
+//    for(int i = 0; i < lda; ++i){
+//        for (int j = 0; j < lda; ++j){
+//            for (auto it = bins[i+j*lda].begin(); it != bins[i+j*lda].end(); ++it){
+//                apply_force_bin(j-1,i-1, *it, parts);
+//                apply_force_bin(j-1,i, *it, parts);
+//                apply_force_bin(j-1,i+1, *it, parts);
+//                apply_force_bin(j,i-1, *it, parts);
+//                apply_force_bin(j,i+1, *it, parts);
+//                apply_force_bin(j+1,i-1, *it, parts);
+//                apply_force_bin(j+1,i, *it, parts);
+//                apply_force_bin(j+1,i+1, *it, parts);
+//                for (auto it2 = bins[i+j*lda].begin(); it2 != bins[i+j*lda].end(); ++it2){
+//                    if(it2 != it){
+//                        apply_force(parts[*it], parts[*it2]);
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     // Move Particles
     for (int i = 0; i < num_parts; ++i) {
         move(parts[i], size);
     }
 
-    for( int i=0; i< lda*lda;i++){
-        bins[i].clear();
-    }
-    int index;
-    for (int i = 0; i < num_parts; ++i){
-        index = calculate_bin_number(parts[i].x,parts[i].y, size, bin_size, lda);
-        bins[index].insert(i);
-    }
+//
 }
