@@ -1,0 +1,10 @@
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/install/local.dir
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/edit_cache.dir
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/package_source.dir
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/install.dir
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/list_install_components.dir
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/rebuild_cache.dir
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/package.dir
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/openmp.dir
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/install/strip.dir
+/global/homes/y/yihua/cs267_hw2_yihua/build/CMakeFiles/serial.dir

@@ -1,0 +1,1 @@
+/opt/cray/pe/craype/2.7.19/bin/CC CMakeFiles/openmp.dir/main.cpp.o CMakeFiles/openmp.dir/openmp.cpp.o -o openmp  /opt/cray/pe/libsci/22.11.1.2/GNU/9.1/x86_64/lib/libsci_gnu_82_mpi_mp.so /opt/cray/pe/libsci/22.11.1.2/GNU/9.1/x86_64/lib/libsci_gnu_82_mp.so /opt/cray/pe/gcc/11.2.0/snos/lib64/libgomp.so 

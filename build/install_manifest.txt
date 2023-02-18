@@ -1,0 +1,3 @@
+/global/homes/y/yihua/cs267_hw2_yihua/build/_CPack_Packages/Linux/TGZ/cs267group2_hw2_1/./serial.cpp
+/global/homes/y/yihua/cs267_hw2_yihua/build/_CPack_Packages/Linux/TGZ/cs267group2_hw2_1/./openmp.cpp
+/global/homes/y/yihua/cs267_hw2_yihua/build/_CPack_Packages/Linux/TGZ/cs267group2_hw2_1/./cs267group2_hw2_1.pdf
